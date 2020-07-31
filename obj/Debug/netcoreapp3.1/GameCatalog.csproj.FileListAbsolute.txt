@@ -59,3 +59,7 @@ C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\GameCatalog.cspr
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\GameCatalog.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Renny\source\repos\GameCatalog\bin\Debug\netcoreapp3.1\test.json
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Detail.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Developer\About.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Developer\Add.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Developer\Index.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddGame.cshtml.g.cs

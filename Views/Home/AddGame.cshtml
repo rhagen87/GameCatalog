@@ -1,0 +1,26 @@
+﻿@model GameCatalog.ViewModels.AddGameViewModel
+
+<h1>Add a Game to the Database</h1>
+
+<form asp-controller="Home" asp-action="ProcessAddGameForm" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DeveloperId">Developer</label>
+        <select asp-for="DeveloperId" asp-items="Model.Developers"></select>
+        <a href="Developer/Add">Add Developer</a>
+    </div>
+
+    <input type="submit" value="Add Game" />
+
+</form>

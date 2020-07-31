@@ -1,0 +1,11 @@
+﻿@model GameCatalog.ViewModels.AddDeveloperViewModel
+<h1>Add New Developer</h1>
+
+<form asp-controller="Developer" asp-action="ProcessAddDeveloperForm" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Developer Name</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <input type="submit" value="Submit" />
+</form>
