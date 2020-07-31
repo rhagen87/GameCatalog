@@ -6,32 +6,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GameCatalog.Models;
+using GameCatalog.Data;
+using Microsoft.EntityFrameworkCore;
+using GameCatalog.ViewModels;
 
 namespace GameCatalog.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private GameDBContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(GameDBContext dBContext)
         {
-            _logger = logger;
+            context = dBContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Game> games = context.Games.ToList();
+            return View(games);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Detail(int id)
         {
-            return View();
-        }
+            Game game = context.Games
+                .Single(g => g.Id == id);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            GameDetailViewModel viewModel = new GameDetailViewModel(game);
+            return View(viewModel);
         }
     }
 }

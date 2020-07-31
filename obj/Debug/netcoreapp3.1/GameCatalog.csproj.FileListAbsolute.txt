@@ -18,7 +18,6 @@ C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\GameCatalog.TagH
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\GameCatalog.TagHelpers.output.cache
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\GameCatalog.RazorCoreGenerate.cache
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -58,4 +57,5 @@ C:\Users\Renny\source\repos\GameCatalog\bin\Debug\netcoreapp3.1\Pomelo.EntityFra
 C:\Users\Renny\source\repos\GameCatalog\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\GameCatalog.csproj.CoreCompileInputs.cache
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\GameCatalog.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Game\Index.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\bin\Debug\netcoreapp3.1\test.json
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Detail.cshtml.g.cs

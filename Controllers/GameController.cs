@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GameCatalog.Data;
+using GameCatalog.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameCatalog.Controllers
@@ -17,7 +18,8 @@ namespace GameCatalog.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            List<Game> games = context.Games.ToList();
+            return View(games);
         }
     }
 }

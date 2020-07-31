@@ -1,8 +1,16 @@
-﻿@model GameCatalog.Models.Game
+﻿@model List<GameCatalog.Models.Game>
 
-<h1>@Model.Name</h1>
-<h2>@Model.ReleaseDate</h2>
-<h2>@Model.Rating</h2>
-<img src="@Model.Cover" />
+@if (Model.Count == 0)
+{
+    <h1>Your games are in another castle.</h1>
+}
 
-<p>@Model.Description</p>
+else
+{
+    foreach (var game in Model)
+    {
+        <h1>@game.Name</h1>
+        <img src="@game.Cover" />
+        <p>@game.Description</p>
+    }
+}
