@@ -1,0 +1,18 @@
+﻿@model List<GameCatalog.Models.GameGenre>
+
+@if (Model.Count == 0)
+{
+    <h1>There are no games listed in this genre!</h1>
+}
+
+else
+{
+    <h1>Games with the Genre: @Model[0].Genre.Name</h1>
+
+    <ul>
+        @foreach (var gameGenre in Model)
+        {
+            <li>@gameGenre.Game.Name</li>
+        }
+    </ul>
+}

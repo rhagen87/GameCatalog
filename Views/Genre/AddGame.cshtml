@@ -1,0 +1,13 @@
+﻿@model GameCatalog.ViewModels.AddGameGenreViewModel
+
+<h1>Add Genre to Game: @Model.Game.Name</h1>
+
+<form asp-controller="Genre" asp-action="AddGame" method="post">
+    <input type="hidden" value="@Model.Game.Id" name="GameId" />
+    <div class="form-group">
+        <label asp-for="GenreId">Genre</label>
+        <select asp-for="GenreId" asp-items="Model.Genres"></select>
+        <span asp-validation-for="GenreId"></span>
+    </div>
+    <input type="submit" value="Add Genre" />
+</form>

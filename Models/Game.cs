@@ -18,6 +18,7 @@ namespace GameCatalog.Models
         public int GenreId { get; set; }
         public Developer Developer { get; set; }
         public int DeveloperId { get; set; }
+        public List<Genre> Genres { get; set; }
 
         public Game() { }
 

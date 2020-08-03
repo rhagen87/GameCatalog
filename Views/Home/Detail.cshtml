@@ -5,3 +5,16 @@
 <img src="@Model.Cover" /><br /><br />
 
 <p>@Model.Description</p>
+
+<table class="table">
+    <tr>
+        <th>Developer</th>
+        <td>@Model.DeveloperName</td>
+    </tr>
+    <tr>
+        <th>Genres</th>
+        <td>@Model.GenreText</td>
+    </tr>
+</table>
+
+<a asp-controller="Genre" asp-action="AddGame" asp-route-id="@Model.GameId">Add additional genres</a>

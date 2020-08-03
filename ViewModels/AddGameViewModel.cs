@@ -17,14 +17,17 @@ namespace GameCatalog.ViewModels
         public string Cover { get; set; }
         public int DeveloperId { get; set; }
         public List<SelectListItem> Developers { get; set; }
+        public List<int> GenreId { get; set; }
+        public List<SelectListItem> Genres { get; set; }
 
         public AddGameViewModel()
         {
 
         }
 
-        public AddGameViewModel(List<Developer> developers)
+        public AddGameViewModel(List<Developer> developers, List<Genre> genres)
         {
+            Genres = new List<SelectListItem>();
             Developers = new List<SelectListItem>();
 
             foreach (var developer in developers)
@@ -34,6 +37,16 @@ namespace GameCatalog.ViewModels
                     Value = developer.Id.ToString(),
                     Text = developer.Name
                 });
+
+            foreach (var genre in genres)
+                {
+                    Genres.Add(
+                        new SelectListItem
+                        {
+                            Value = genre.Id.ToString(),
+                            Text = genre.Name
+                        });
+                }
             }
         }
     }

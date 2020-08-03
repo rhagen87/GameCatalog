@@ -63,3 +63,7 @@ C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Deve
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Developer\Add.cshtml.g.cs
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Developer\Index.cshtml.g.cs
 C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\AddGame.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Genre\About.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Add.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Genre\AddGame.cshtml.g.cs
+C:\Users\Renny\source\repos\GameCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Genre\Index.cshtml.g.cs

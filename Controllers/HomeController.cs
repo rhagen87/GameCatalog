@@ -15,12 +15,10 @@ namespace GameCatalog.Controllers
     public class HomeController : Controller
     {
         private GameDBContext context;
-
         public HomeController(GameDBContext dBContext)
         {
             context = dBContext;
         }
-
         public IActionResult Index()
         {
             List<Game> games = context.Games
@@ -28,16 +26,15 @@ namespace GameCatalog.Controllers
                 .ToList();
             return View(games);
         }
-
-        [HttpGet("Add")]
+        [HttpGet("/Add")]
         public IActionResult AddGame()
         {
             List<Developer> developers = context.Developers.ToList();
-            AddGameViewModel addGameViewModel = new AddGameViewModel(developers);
+            List<Genre> genres = context.Genres.ToList();
+            AddGameViewModel addGameViewModel = new AddGameViewModel(developers, genres);
             return View(addGameViewModel);
         }
-
-        public IActionResult ProcessAddGameForm(AddGameViewModel addGameViewModel)
+        public IActionResult ProcessAddGameForm(AddGameViewModel addGameViewModel, string[] selectedGenres)
         {
             if (ModelState.IsValid)
             {
@@ -48,6 +45,17 @@ namespace GameCatalog.Controllers
                     Description = addGameViewModel.Description,
                     Developer = developer
                 };
+
+                foreach (string genre in selectedGenres) 
+                {
+                    GameGenre gameGenre = new GameGenre
+                    {
+                        Game = game,
+                        GameId = game.Id,
+                        GenreId = int.Parse(genre)
+                    };
+                    context.GameGenres.Add(gameGenre);
+                }
                 context.Games.Add(game);
                 context.SaveChanges();
 
@@ -55,14 +63,18 @@ namespace GameCatalog.Controllers
             }
             return View("AddGame", addGameViewModel);
         }
-
         public IActionResult Detail(int id)
         {
             Game game = context.Games
                 .Include(g => g.Developer)
                 .Single(g => g.Id == id);
 
-            GameDetailViewModel viewModel = new GameDetailViewModel(game);
+            List<GameGenre> gameGenres = context.GameGenres
+                .Where(gg => gg.GameId == id)
+                .Include(gg => gg.Genre)
+                .ToList();
+
+            GameDetailViewModel viewModel = new GameDetailViewModel(game, gameGenres);
             return View(viewModel);
         }
     }
