@@ -1,37 +1,65 @@
 ﻿@model GameCatalog.ViewModels.AddGameViewModel;
 
-<h1>Add a Game to the Database</h1>
+<h1 style="margin-bottom: 30px">Add a Game to the Database</h1>
 
 <form asp-controller="Home" asp-action="ProcessAddGameForm" method="post">
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name"></span>
+    <div class="form-group row">
+        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <input asp-for="Description" />
+    <div class="form-group row">
+        <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+
+        <div class="col-sm-10">
+            <textarea asp-for="Description" class="form-control"></textarea>
+
+        </div>
         <span asp-validation-for="Description"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="DeveloperId">Developer</label>
-        <select asp-for="DeveloperId" asp-items="Model.Developers">
-            <option value="none" selected="selected"> -- choose one -- </option>
-        </select>
-        <a href="/Developer/Add">Add Developer</a>
+    <div class="form-group row">
+        <label asp-for="Cover" class="col-sm-2 col-form-label">Cover Art URL</label>
+        <div class="col-sm-10">
+            <input asp-for="Cover" class="form-control" />
+        </div>
     </div>
 
-    <div class="form-group">
-        @foreach (var genre in Model.Genres)
-        {
-            <label name="selectedGenres" value="@genre.Text">@genre.Text</label>
-            <input type="checkbox" name="selectedGenres" value="@genre.Value" />
-        }
-        <a href="/Genre/Add">Add Genre</a>
+    <div class="form-group row">
+        <label asp-for="DeveloperId" class="col-sm-2 col-form-label">Developer</label>
+        <div class="col-sm-10">
+            <select asp-for="DeveloperId" asp-items="Model.Developers" class="custom-select mr-sm-2">
+                <option value="none" selected="selected" class="form-control"> -- choose one -- </option>
+            </select>
+            <div class="col-sm-2">
+                <a href="/Developer/Add">Add Developer</a>
+            </div>
+        </div>
+
     </div>
 
-    <input type="submit" value="Add Game" />
+    <div class="form-group row">
+        <div class="col-sm-2">Genres</div>
+        <div class="col-sm-10">
+            @foreach (var genre in Model.Genres)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="selectedGenres" value="@genre.Value" />
+                    <label class="form-check-label" name="selectedGenres" value="@genre.Text">@genre.Text</label>
+                </div>
+            }
+            <div class="col-sm-2">
+                <a href="/Genre/Add">Add Genre</a>
+            </div>
+        </div>
+    </div>
 
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <input type="submit" value="Add Game" class="btn btn-primary" />
+        </div>
+    </div>
 </form>
