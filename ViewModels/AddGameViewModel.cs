@@ -37,16 +37,16 @@ namespace GameCatalog.ViewModels
                     Value = developer.Id.ToString(),
                     Text = developer.Name
                 });
+            }
 
             foreach (var genre in genres)
+            {
+                Genres.Add(new SelectListItem
                 {
-                    Genres.Add(
-                        new SelectListItem
-                        {
-                            Value = genre.Id.ToString(),
-                            Text = genre.Name
-                        });
-                }
+                    Value = genre.Id.ToString(),
+                    Text = genre.Name
+                });
+                
             }
         }
     }

@@ -27,7 +27,7 @@
         @foreach (var genre in Model.Genres)
         {
             <label name="selectedGenres" value="@genre.Text">@genre.Text</label>
-            <input type="checkbox" name="selectedGenres" value="@genre.Value" /><br />
+            <input type="checkbox" name="selectedGenres" value="@genre.Value" />
         }
         <a href="/Genre/Add">Add Genre</a>
     </div>
