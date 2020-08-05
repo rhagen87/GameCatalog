@@ -19,13 +19,15 @@ else
     <table class="table">
         <tr>
             <th>Name</th>
-            <th>Description</th>
+            <th>Developer</th>
+            <th>Edit</th>
         </tr>
         @foreach (Game game in Model)
         {
             <tr>
                 <td><a asp-controller="Home" asp-action="Detail" asp-route-id="@game.Id">@game.Name</a></td>
                 <td>@game.Developer.Name</td>
+                <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@game.Id">Edit</a></td> 
             </tr>
         }
     </table>

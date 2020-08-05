@@ -4,8 +4,6 @@
 
 <img src="@Model.Cover" /><br /><br />
 
-<p>@Model.Description</p>
-
 <table class="table">
     <tr>
         <th>Developer</th>
@@ -15,6 +13,20 @@
         <th>Genres</th>
         <td>@Model.GenreText</td>
     </tr>
+    <tr>
+        <th>Release Date</th>
+        @if (Model.ReleaseDate != null)
+        {
+            <th>@Model.ReleaseDate.ToShortDateString()</th>
+        }
+        else
+        {
+            <th>N/A</th>
+        }
+
+    </tr>
 </table>
+
+<p>@Model.Description</p>
 
 <a asp-controller="Genre" asp-action="AddGame" asp-route-id="@Model.GameId">Add additional genres</a>

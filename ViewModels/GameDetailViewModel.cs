@@ -16,6 +16,7 @@ namespace GameCatalog.ViewModels
         public string Cover { get; set; }
         public string GenreText { get; set; }
         public string DeveloperName { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         public GameDetailViewModel(Game game, List<GameGenre> gameGenres)
         {
@@ -24,6 +25,7 @@ namespace GameCatalog.ViewModels
             Description = game.Description;
             Cover = game.Cover;
             DeveloperName = game.Developer.Name;
+            ReleaseDate = game.ReleaseDate;
 
             GenreText = "";
             for (int i = 0; i < gameGenres.Count; i++)

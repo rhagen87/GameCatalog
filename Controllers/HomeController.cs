@@ -9,6 +9,7 @@ using GameCatalog.Models;
 using GameCatalog.Data;
 using Microsoft.EntityFrameworkCore;
 using GameCatalog.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameCatalog.Controllers
 {
@@ -43,6 +44,8 @@ namespace GameCatalog.Controllers
                 {
                     Name = addGameViewModel.Name,
                     Description = addGameViewModel.Description,
+                    Cover = addGameViewModel.Cover,
+                    ReleaseDate = addGameViewModel.ReleaseDate,
                     Developer = developer
                 };
 
@@ -76,6 +79,28 @@ namespace GameCatalog.Controllers
 
             GameDetailViewModel viewModel = new GameDetailViewModel(game, gameGenres);
             return View(viewModel);
+        }
+        [Route("Home/Edit/{Id}")]
+        public IActionResult Edit(int id)
+        {
+            Game game = context.Games.Find(id);
+            List<Developer> developers = context.Developers.ToList();
+            List<Genre> genres = context.Genres.ToList();
+            List<GameGenre> gameGenres = context.GameGenres.ToList();
+            EditGameViewModel viewModel = new EditGameViewModel(game, developers, genres, gameGenres);
+            return View(viewModel);
+        }
+        [HttpPost]
+        [Route("Home/Edit")]
+        public IActionResult SubmitEditGameForm(int id, string name, string description)
+        {
+            Game game = context.Games.Find(id);
+
+            game.Name = name;
+            game.Description = description;
+            context.SaveChanges();
+            return Redirect("Index");
+
         }
     }
 }

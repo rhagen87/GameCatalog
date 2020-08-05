@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameCatalog.ViewModels
 {
-    public class AddGameViewModel
+    public class EditGameViewModel
     {
         [Required]
         public string Name { get; set; }
@@ -16,20 +16,23 @@ namespace GameCatalog.ViewModels
         public string Description { get; set; }
         public string Cover { get; set; }
         public int DeveloperId { get; set; }
-        public DateTime ReleaseDate { get; set; }
         public List<SelectListItem> Developers { get; set; }
         public List<int> GenreId { get; set; }
         public List<SelectListItem> Genres { get; set; }
+        public Game Game { get; set; }
+        public List<SelectListItem> GameGenres { get; set; }
 
-        public AddGameViewModel()
+        public EditGameViewModel()
         {
 
         }
 
-        public AddGameViewModel(List<Developer> developers, List<Genre> genres)
+        public EditGameViewModel(Game game, List<Developer> developers, List<Genre> genres, List<GameGenre> gameGenres)
         {
             Genres = new List<SelectListItem>();
             Developers = new List<SelectListItem>();
+            GameGenres = new List<SelectListItem>();
+            Game = game;
 
             foreach (var developer in developers)
             {
@@ -47,7 +50,16 @@ namespace GameCatalog.ViewModels
                     Value = genre.Id.ToString(),
                     Text = genre.Name
                 });
-                
+            }
+
+            foreach (var gameGenre in gameGenres)
+            {
+                GameGenres.Add(new SelectListItem
+                {
+                    Value = gameGenre.GenreId.ToString(),
+                    Text = gameGenre.GameId.ToString()
+                });
+
             }
         }
     }
