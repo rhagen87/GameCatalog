@@ -21,6 +21,7 @@ namespace GameCatalog.ViewModels
         public List<SelectListItem> Genres { get; set; }
         public Game Game { get; set; }
         public List<SelectListItem> GameGenres { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         public EditGameViewModel()
         {

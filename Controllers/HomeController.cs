@@ -90,17 +90,25 @@ namespace GameCatalog.Controllers
             EditGameViewModel viewModel = new EditGameViewModel(game, developers, genres, gameGenres);
             return View(viewModel);
         }
+        
         [HttpPost]
         [Route("Home/Edit")]
-        public IActionResult SubmitEditGameForm(int id, string name, string description)
+        public IActionResult SubmitEditGameForm(EditGameViewModel edit, int gameId, string[] selectedGenres)
         {
-            Game game = context.Games.Find(id);
-
-            game.Name = name;
-            game.Description = description;
-            context.SaveChanges();
-            return Redirect("Index");
-
+            if (ModelState.IsValid)
+            {
+                Game gameToEdit = context.Games.Find(gameId);
+                GameGenre gameGenreToEdit = context.GameGenres.Find(gameId);
+                gameToEdit.Name = edit.Name;
+                gameToEdit.Description = edit.Description;
+                gameToEdit.Cover = edit.Cover;
+                gameToEdit.DeveloperId = edit.DeveloperId;
+                gameToEdit.ReleaseDate = edit.ReleaseDate;
+                //gameGenreToEdit.GameId = 
+                return Redirect("Index");
+            }
+            return View("Edit");
         }
+        
     }
 }
