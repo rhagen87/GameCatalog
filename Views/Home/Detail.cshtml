@@ -15,13 +15,13 @@
     </tr>
     <tr>
         <th>Release Date</th>
-        @if (Model.ReleaseDate != null)
+        @if (Model.ReleaseDate != "1/1/0001")
         {
-            <th>@Model.ReleaseDate.ToShortDateString()</th>
+            <td>@Model.ReleaseDate</td>
         }
         else
         {
-            <th>N/A</th>
+            <td>N/A</td>
         }
 
     </tr>
