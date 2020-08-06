@@ -21,6 +21,7 @@ else
             <th>Name</th>
             <th>Developer</th>
             <th>Edit</th>
+            <th>Delete</th>
         </tr>
         @foreach (Game game in Model)
         {
@@ -28,6 +29,7 @@ else
                 <td><a asp-controller="Home" asp-action="Detail" asp-route-id="@game.Id">@game.Name</a></td>
                 <td>@game.Developer.Name</td>
                 <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@game.Id">Edit</a></td> 
+                <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@game.Id">Delete</a></td>
             </tr>
         }
     </table>

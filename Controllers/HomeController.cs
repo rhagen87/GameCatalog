@@ -10,6 +10,7 @@ using GameCatalog.Data;
 using Microsoft.EntityFrameworkCore;
 using GameCatalog.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace GameCatalog.Controllers
 {
@@ -80,56 +81,52 @@ namespace GameCatalog.Controllers
             GameDetailViewModel viewModel = new GameDetailViewModel(game, gameGenres);
             return View(viewModel);
         }
-        [Route("Home/Edit/{Id}")]
         public IActionResult Edit(int id)
         {
-            Game game = context.Games.Find(id);
-            List<Developer> developers = context.Developers.ToList();
-            List<Genre> genres = context.Genres.ToList();
-            List<GameGenre> gameGenres = context.GameGenres.ToList();
-            EditGameViewModel viewModel = new EditGameViewModel(game, developers, genres, gameGenres);
-            return View(viewModel);
+            Game game = context.Games.Where(x => x.Id == id).SingleOrDefault();
+            return View(game);
         }
-        
-        public IActionResult SubmitEditGameForm(EditGameViewModel editGameViewModel, string[] selectedGenres)
+        [HttpPost]
+        public IActionResult SubmitEditGameForm(int id, Game model)
         {
-            if (ModelState.IsValid)
+            var data = context.Games.FirstOrDefault(x => x.Id == id);
+
+            if (data != null)
             {
-                Game gameToEdit = editGameViewModel.Game;
-                List<GameGenre> gameGenresToRemove = context.GameGenres
-                    .Where(gg => gg.GameId == gameToEdit.Id)
-                    .ToList();
-
-                foreach (var gameGenre in gameGenresToRemove)
-                {
-                    GameGenre remove = context.GameGenres.Find(gameGenre.GameId);
-                    context.GameGenres.Remove(remove);
-                    context.SaveChanges();
-                }
-
-                gameToEdit.Name = editGameViewModel.Name;
-                gameToEdit.Description = editGameViewModel.Description;
-                gameToEdit.Cover = editGameViewModel.Cover;
-                gameToEdit.DeveloperId = editGameViewModel.DeveloperId;
-                gameToEdit.ReleaseDate = editGameViewModel.ReleaseDate;
-
-                foreach (string genre in selectedGenres)
-                {
-                    GameGenre gameGenre = new GameGenre
-                    {
-                        Game = gameToEdit,
-                        GameId = gameToEdit.Id,
-                        GenreId = int.Parse(genre)
-                    };
-                    context.GameGenres.Add(gameGenre);
-                }
-
-                context.Games.Attach(gameToEdit);
+                data.Name = model.Name;
+                data.Description = model.Description;
+                data.DeveloperId = model.DeveloperId;
+                data.ReleaseDate = model.ReleaseDate;
+                data.Cover = model.Cover;
                 context.SaveChanges();
-                return Redirect("Index");
+
+                return Redirect("/Home/Index");
             }
-            return View("Edit", editGameViewModel);
-        }
+            else
+            {
+                return View("Edit");
+            }
+        }   
         
+        public IActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var data = context.Games.FirstOrDefault(x => x.Id == id);
+            if (data != null)
+            {
+                context.Games.Remove(data);
+                context.SaveChanges();
+                return Redirect("/Home/Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }
