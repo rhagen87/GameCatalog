@@ -1,6 +1,8 @@
 ﻿@model GameCatalog.ViewModels.EditGameViewModel;
 <h1 style="margin-bottom: 30px">Edit a Game in the Database</h1>
 
+<label asp-for="Game.Id" name="gameId" hidden></label>
+
 <form asp-controller="Home" asp-action="SubmitEditGameForm" method="post">
     <div class="form-group row">
         <label asp-for="Game.Name" class="col-sm-2 col-form-label">Edit Name</label>

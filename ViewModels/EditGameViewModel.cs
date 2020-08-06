@@ -10,9 +10,7 @@ namespace GameCatalog.ViewModels
 {
     public class EditGameViewModel
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Description { get; set; }
         public string Cover { get; set; }
         public int DeveloperId { get; set; }

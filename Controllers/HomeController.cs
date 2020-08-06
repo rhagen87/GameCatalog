@@ -91,23 +91,44 @@ namespace GameCatalog.Controllers
             return View(viewModel);
         }
         
-        [HttpPost]
-        [Route("Home/Edit")]
-        public IActionResult SubmitEditGameForm(EditGameViewModel edit, int gameId, string[] selectedGenres)
+        public IActionResult SubmitEditGameForm(EditGameViewModel editGameViewModel, string[] selectedGenres)
         {
             if (ModelState.IsValid)
             {
-                Game gameToEdit = context.Games.Find(gameId);
-                GameGenre gameGenreToEdit = context.GameGenres.Find(gameId);
-                gameToEdit.Name = edit.Name;
-                gameToEdit.Description = edit.Description;
-                gameToEdit.Cover = edit.Cover;
-                gameToEdit.DeveloperId = edit.DeveloperId;
-                gameToEdit.ReleaseDate = edit.ReleaseDate;
-                //gameGenreToEdit.GameId = 
+                Game gameToEdit = editGameViewModel.Game;
+                List<GameGenre> gameGenresToRemove = context.GameGenres
+                    .Where(gg => gg.GameId == gameToEdit.Id)
+                    .ToList();
+
+                foreach (var gameGenre in gameGenresToRemove)
+                {
+                    GameGenre remove = context.GameGenres.Find(gameGenre.GameId);
+                    context.GameGenres.Remove(remove);
+                    context.SaveChanges();
+                }
+
+                gameToEdit.Name = editGameViewModel.Name;
+                gameToEdit.Description = editGameViewModel.Description;
+                gameToEdit.Cover = editGameViewModel.Cover;
+                gameToEdit.DeveloperId = editGameViewModel.DeveloperId;
+                gameToEdit.ReleaseDate = editGameViewModel.ReleaseDate;
+
+                foreach (string genre in selectedGenres)
+                {
+                    GameGenre gameGenre = new GameGenre
+                    {
+                        Game = gameToEdit,
+                        GameId = gameToEdit.Id,
+                        GenreId = int.Parse(genre)
+                    };
+                    context.GameGenres.Add(gameGenre);
+                }
+
+                context.Games.Attach(gameToEdit);
+                context.SaveChanges();
                 return Redirect("Index");
             }
-            return View("Edit");
+            return View("Edit", editGameViewModel);
         }
         
     }
