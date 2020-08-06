@@ -87,7 +87,7 @@ namespace GameCatalog.Controllers
             return View(game);
         }
         [HttpPost]
-        public IActionResult SubmitEditGameForm(int id, Game model)
+        public IActionResult Edit(int id, Game model)
         {
             var data = context.Games.FirstOrDefault(x => x.Id == id);
 
